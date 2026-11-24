@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>백년택일 · 카페24 연결</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;background:#FBF4F2;color:#222;margin:0;padding:40px 16px}
+.box{max-width:560px;margin:0 auto;background:#fff;border-radius:16px;padding:28px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+h1{font-size:20px;margin:0 0 8px}p{color:#555;line-height:1.6}
+textarea{width:100%;box-sizing:border-box;height:90px;font-size:13px;padding:10px;border:1px solid #ddd;border-radius:10px}
+button{margin-top:12px;width:100%;padding:14px;font-size:16px;font-weight:700;border:0;border-radius:10px;background:#E8505B;color:#fff;cursor:pointer}
+.ok{color:#2e7d32;font-weight:700;margin-top:10px;display:none}.warn{color:#c62828}
+</style></head><body><div class="box">
+<h1>✅ 카페24 승인 완료</h1>
+<p id="msg">아래 [주소 복사]를 누르고, 구글 시트의 <b>④ 카페24 연결</b> 창에 붙여 넣은 뒤 [연결]을 눌러 주세요.<br><span class="warn">⏱ 1분 안에 해 주세요.</span></p>
+<textarea id="u" readonly></textarea>
+<button id="b">주소 복사</button><div class="ok" id="ok">복사했어요! 시트 창에 붙여 넣으세요.</div>
+</div>
+<script>
+// 이 페이지는 어디로도 데이터를 보내지 않습니다. 주소창의 값을 화면에 보여 주기만 합니다.
+var u = location.href, has = /[?&]code=/.test(location.search);
+document.getElementById('u').value = u;
+if (!has) {
+  document.querySelector('h1').textContent = '백년택일 · 카페24 연결';
+  document.getElementById('msg').textContent = '구글 시트 메뉴 ④에서 시작해 주세요.';
+}
+document.getElementById('b').onclick = function () {
+  var t = document.getElementById('u'); t.select();
+  (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject())
+    .catch(function () { document.execCommand('copy'); })
+    .finally(function () { document.getElementById('ok').style.display = 'block'; });
+};
+</script></body></html>
